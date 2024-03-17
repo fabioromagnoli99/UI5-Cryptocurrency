@@ -1,0 +1,113 @@
+<mvc:View
+    controllerName="googleimage.controller.View"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <IconTabBar
+                id="idIconTabBarNoIcons"
+                class="sapUiResponsiveContentPadding"
+            >
+                <items>
+                    <IconTabFilter
+                        text="Top 50 Coins"
+                        key="search"
+                    >
+                        <Table items="{coinModel>/data/coins}">
+                            <columns>
+                                <Column>
+                                    <Text text="Rank" />
+                                </Column>
+                                <Column
+                                    mergeDuplicates="true"
+                                    hAlign="Right"
+                                >
+                                    <Text />
+                                </Column>
+                                <Column>
+                                    <Text text="Name" />
+                                </Column>
+                                <Column>
+                                    <Text text="Symbol" />
+                                </Column>
+                                <Column>
+                                    <Text text="Price (USD)" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{coinModel>rank}" />
+                                        <Image
+                                            src="{coinModel>iconUrl}"
+                                            width="2em"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Text text="{coinModel>name}" />
+                                        <Text text="{coinModel>symbol}" />
+                                        <Label
+                                            text="{
+                                                path: 'coinModel>price',
+                                                formatter: '.formatarPreco'
+                                            }"
+                                            design="Bold"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter
+                        text="Search"
+                        key="info"
+                    >
+                        <FlexBox justifyContent="Center">
+                            <Input
+                                id="inpBusca"
+                                submit="onPressBuscar"
+                            />
+                            <Button
+                                text="Serch"
+                                press="onPressBuscar"
+                            />
+                        </FlexBox>
+                        <List
+                            headerText="Cryptocurrency Prices by Market Cap"
+                            items="{Modelo>/imagens}"
+                        >
+                            <CustomListItem>
+                                <HBox>
+                                    <Image
+                                        src="{Modelo>iconUrl}"
+                                        width="2em"
+                                        class="sapUiSmallMargin"
+                                    />
+                                    <VBox class="sapUiSmallMargin">
+                                        <Link
+                                            text="{Modelo>name}"
+                                            href=""
+                                            target="_blank"
+                                        />
+                                        <Label text="{Modelo>symbol}" />
+                                        <Label
+                                            text="{
+                                                path: 'Modelo>price',
+                                                formatter: '.formatarPreco'
+                                            }"
+                                            design="Bold"
+                                        />
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </List>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
